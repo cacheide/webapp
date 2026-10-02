@@ -2,7 +2,7 @@
 
 Buyer locks ETH → seller delivers → buyer releases. If nothing is delivered, the buyer reclaims after the deadline. No middleman.
 
-**Contract address:** <!--ADDR-->NOT DEPLOYED YET (npm run deploy fills this in)<!--/ADDR-->
+**Contract address:** <!--ADDR-->[0xEe24400F7f3B93b2b219E597446CDF09Af936423](https://sepolia.basescan.org/address/0xEe24400F7f3B93b2b219E597446CDF09Af936423#code)<!--/ADDR-->
 
 ## Setup
 1. `cp .env.example .env` and fill in the values
