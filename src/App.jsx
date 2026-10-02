@@ -84,7 +84,7 @@ export default function App() {
   useEffect(() => { const t = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 15000); return () => clearInterval(t); }, []);
   const [shown, setShown] = useState(20);
   const on = !!address && !!ESCROW_ADDRESS;
-  const { data: count, refetch: refetchCount } = useReadContract({
+  const { data: count, refetch: refetchCount, error: countError } = useReadContract({
     address: ESCROW_ADDRESS, abi: escrowAbi, functionName: "dealCountOf", args: [address], chainId: baseSepolia.id, query: { enabled: on },
   });
   const total = Number(count ?? 0n);
@@ -99,7 +99,7 @@ export default function App() {
       {!ESCROW_ADDRESS && <p className="text-red-400 text-sm">Set VITE_ESCROW_ADDRESS to the deployed contract.</p>}
       {address && ESCROW_ADDRESS ? (<>
         <CreateDeal onDone={refetch} />
-        <h2 className="font-semibold pt-2">Your deals</h2>
+        <h2 className="font-semibold pt-2">Your deals</h2>{countError && <p className="text-xs text-red-400 break-all">{countError.shortMessage || countError.message}</p>}
         {isLoading && <p className="text-sm text-slate-400">Loading…</p>}
         {deals?.length === 0 && <p className="text-sm text-slate-400">No deals yet.</p>}
         {deals && [...deals].reverse().map((d) => <DealCard key={d.id.toString()} d={d} me={address} now={now} onDone={refetch} />)}
