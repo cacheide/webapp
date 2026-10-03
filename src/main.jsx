@@ -9,15 +9,16 @@ import "./index.css";
 import App from "./App.jsx";
 
 const config = getDefaultConfig({
-  appName: "Onchain Escrow",
+  appName: "CACHE",
   projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID,
   chains: [baseSepolia],
   transports: { [baseSepolia.id]: http(import.meta.env.VITE_ALCHEMY_URL) },
 });
 const qc = new QueryClient();
+const theme = darkTheme({ accentColor: "#2f6bff", accentColorForeground: "white", borderRadius: "small", overlayBlur: "small" });
 
 createRoot(document.getElementById("root")).render(
   <WagmiProvider config={config}><QueryClientProvider client={qc}>
-    <RainbowKitProvider theme={darkTheme()}><App /></RainbowKitProvider>
+    <RainbowKitProvider theme={theme}><App /></RainbowKitProvider>
   </QueryClientProvider></WagmiProvider>
 );
