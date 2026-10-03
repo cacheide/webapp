@@ -197,10 +197,10 @@ export default function App() {
     <>
       <Background focus={focus} />
       {!on ? <Landing /> : (
-        <div className="relative z-10 mx-auto w-full max-w-2xl px-4 pb-16 pt-16">
-          <div className="topbar"><div className="topbar-in"><span className="chip net">Base Sepolia</span><Connect /></div></div>
+        <div className="relative z-10 mx-auto w-full max-w-2xl px-4 pb-16 pt-6">
           <div className="brand-zone"><Brand variant="header" /></div>
           <div className="pull-shift">
+          <div className="controls"><span className="chip net">Base Sepolia</span><Connect /></div>
           <nav className="tabs">
             <button className={tab === "create" ? "on" : ""} onClick={() => setTab("create")}>Create escrow</button>
             <button className={tab === "list" ? "on" : ""} onClick={() => setTab("list")}>Escrows{total ? ` (${total})` : ""}</button>

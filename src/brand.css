@@ -21,3 +21,5 @@ html,body{overscroll-behavior-y:none}
 .brand-zone{height:4.6rem;position:relative;z-index:1}
 .pull-shift{transform:translateY(calc(var(--pull)*120px));will-change:transform}
 .releasing .brand,.releasing .b-cache,.releasing .b-onchain,.releasing .b-escrow,.releasing .pull-shift{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.3rem 0 1rem}
