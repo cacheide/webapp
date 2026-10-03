@@ -154,11 +154,11 @@ function EscrowCard({ d, me, now, onDone }) {
 
 function Landing() {
   return (
-    <main className="view relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+    <main className="view relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pb-16 text-center">
       <h1 className="hero-title">CACHE</h1>
       <p className="hero-sub">ON CHAIN ESCROW</p>
       <p className="hero-copy">Secure on-chain escrow for digital transactions. Funds are held by a verified smart contract and only the sender can release them.</p>
-      <div className="mt-9"><Connect /></div>
+      <div className="mt-7"><Connect /></div>
       <p className="foot-note">Base Sepolia testnet</p>
     </main>
   );
