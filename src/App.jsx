@@ -5,6 +5,7 @@ import { baseSepolia } from "wagmi/chains";
 import { parseEther, formatEther, isAddress } from "viem";
 import { escrowAbi, ESCROW_ADDRESS, EXPLORER } from "./abi.js";
 import Background from "./Background.jsx";
+import Brand, { useOverscroll } from "./Brand.jsx";
 
 const PAGE = 20;
 const DUST = parseEther("0.0001");
@@ -155,8 +156,7 @@ function EscrowCard({ d, me, now, onDone }) {
 function Landing() {
   return (
     <main className="view relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pb-16 text-center">
-      <h1 className="hero-title">CACHE</h1>
-      <p className="hero-sub">ON CHAIN ESCROW</p>
+      <Brand variant="hero" />
       <p className="hero-copy">Secure on-chain escrow for digital transactions. Funds are held by a verified smart contract and only the sender can release them.</p>
       <div className="mt-7"><Connect /></div>
       <p className="foot-note">Base Sepolia testnet</p>
@@ -166,6 +166,7 @@ function Landing() {
 
 export default function App() {
   const { address } = useAccount();
+  useOverscroll();
   const [now, setNow] = useState(Math.floor(Date.now() / 1000));
   const [tab, setTab] = useState("create");
   const [filter, setFilter] = useState("all");
@@ -196,11 +197,10 @@ export default function App() {
     <>
       <Background focus={focus} />
       {!on ? <Landing /> : (
-        <div className="relative z-10 mx-auto w-full max-w-2xl px-4 pb-16">
-          <header className="flex flex-wrap items-center justify-between gap-3 py-5">
-            <div><div className="wordmark">CACHE</div><div className="wordmark-sub">ON CHAIN ESCROW</div></div>
-            <div className="flex items-center gap-2"><span className="chip net">Base Sepolia</span><Connect /></div>
-          </header>
+        <div className="relative z-10 mx-auto w-full max-w-2xl px-4 pb-16 pt-16">
+          <div className="topbar"><div className="topbar-in"><span className="chip net">Base Sepolia</span><Connect /></div></div>
+          <div className="brand-zone"><Brand variant="header" /></div>
+          <div className="pull-shift">
           <nav className="tabs">
             <button className={tab === "create" ? "on" : ""} onClick={() => setTab("create")}>Create escrow</button>
             <button className={tab === "list" ? "on" : ""} onClick={() => setTab("list")}>Escrows{total ? ` (${total})` : ""}</button>
@@ -236,6 +236,7 @@ export default function App() {
             <span className="mono">Contract {ESCROW_ADDRESS ? short(ESCROW_ADDRESS) : "not set"}</span>
             {ESCROW_ADDRESS && <a className="link" target="_blank" rel="noreferrer" href={`${EXPLORER}/address/${ESCROW_ADDRESS}#code`}>Verified on Basescan ↗</a>}
           </footer>
+          </div>
         </div>
       )}
       {!ESCROW_ADDRESS && <p className="relative z-10 p-4 text-center text-sm text-red-400">Set VITE_ESCROW_ADDRESS to the deployed contract.</p>}

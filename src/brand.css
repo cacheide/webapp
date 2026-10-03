@@ -1,0 +1,23 @@
+html,body{overscroll-behavior-y:none}
+:root{--pull:0}
+.brand{display:flex;flex-direction:column;will-change:transform}
+.b-cache,.b-onchain,.b-escrow{white-space:nowrap;will-change:transform}
+.b-cache{font-weight:600;line-height:1;letter-spacing:.12em}
+.b-onchain{font-weight:500;color:var(--blue2);letter-spacing:.08em}
+.b-escrow{font-weight:500;color:var(--mute);letter-spacing:.22em}
+/* header: grows downward from the top-left; the fixed bar above never moves */
+.brand-header{align-items:flex-start}
+.brand-header .b-cache{font-size:1.7rem;transform-origin:left top;transform:scale(calc(1 + var(--pull)*1.5))}
+.brand-header .b-onchain{font-size:.82rem;margin-top:.35rem;transform-origin:left top;transform:translateY(calc(var(--pull)*46px)) scale(calc(1 + var(--pull)*.9))}
+.brand-header .b-escrow{font-size:.62rem;margin-top:.6rem;transform-origin:left top;transform:translateY(calc(var(--pull)*66px)) scale(calc(1 + var(--pull)*.6))}
+/* landing: centered, grows within the gap above the paragraph and button */
+.brand-hero{align-items:center;transform:translateY(calc(var(--pull)*-34px))}
+.brand-hero .b-cache{font-size:clamp(2.6rem,10.5vw,4.6rem);margin-right:-.12em;transform-origin:center top;transform:scale(calc(1 + var(--pull)*.35))}
+.brand-hero .b-onchain{font-size:1rem;margin-top:.7rem;margin-right:-.08em;transform-origin:center top;transform:translateY(calc(var(--pull)*28px)) scale(calc(1 + var(--pull)*.3))}
+.brand-hero .b-escrow{font-size:.7rem;margin-top:.8rem;margin-right:-.22em;transform-origin:center top;transform:translateY(calc(var(--pull)*40px)) scale(calc(1 + var(--pull)*.2))}
+/* fixed controls + content shift (content moves down; controls stay put) */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:30;background:#05070dd9;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:42rem;margin:0 auto;padding:.7rem 1rem;display:flex;justify-content:flex-end;align-items:center;gap:.5rem}
+.brand-zone{height:4.6rem;position:relative;z-index:1}
+.pull-shift{transform:translateY(calc(var(--pull)*120px));will-change:transform}
+.releasing .brand,.releasing .b-cache,.releasing .b-onchain,.releasing .b-escrow,.releasing .pull-shift{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
